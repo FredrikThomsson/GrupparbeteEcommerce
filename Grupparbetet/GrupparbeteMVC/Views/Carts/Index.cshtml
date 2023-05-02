@@ -1,0 +1,53 @@
+﻿@model GrupparbeteMVC.Models.Cart
+
+<div id="cart-container">
+    <h1>Cart</h1>
+
+    <br />
+
+
+    @if (Model.CartTotal > 0)
+    {
+        <h2>Products</h2>
+
+        @foreach (CartItem Item in Model.CartItems)
+        {
+            <div class="cart-item">
+                <div class="product-name">
+                    @Html.DisplayFor(modelItem => Item.Product.Name)
+                </div>
+                <div class="cart-item-total">
+                    @Html.DisplayFor(modelItem => Item.CartItemTotal) <span>kr</span>
+                </div>
+                <div class="cart-item-quantity">
+                    <span>Quantity:</span>
+                    <a class="remove-item" asp-action="RemoveOne" asp-route-id="@Item.Id">-</a>
+                    @Html.DisplayFor(modelItem => Item.Quantity)
+                    <a class="add-item" asp-action="AddOne" asp-route-id="@Item.Id">+</a>
+                </div>
+                <div class="cart-item-remove">
+                    <a class="remove-item" asp-action="Delete" asp-route-id="@Item.Id">Remove</a>
+                </div>
+            </div>
+
+            <hr class="divider">
+        }
+
+        <br />
+        <div class="cart-actions">
+            <a class="empty-cart" asp-action="DeleteAllConfirm">Empty the cart</a>
+            <br/>
+            <a class="checkout" asp-controller="Orders" asp-action="Checkout">Checkout</a>
+        </div>
+    }
+
+    @if (Model.CartTotal == 0)
+    {
+        <p>Your cart is empty</p>
+    }
+
+    <div class="cart-total">
+        Total: @Html.DisplayFor(model => model.CartTotal)kr
+    </div>
+
+</div>

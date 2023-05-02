@@ -1,0 +1,19 @@
+﻿@model List<Product>
+
+
+<div id="change-price-link">
+    <a id="change-to-dollar" asp-action="IndexDollarPrice">Change to Dollar price</a>
+</div>
+<div id="products-list">
+    @foreach (Product Item in Model)
+    {
+        <div class="product">
+            <div class="product-name">@Html.DisplayFor(modelItem => Item.Name)</div>
+            <div class="product-price">@Html.DisplayFor(modelItem => Item.SEKPrice)<span>Kr </span></div>
+            <div class="product-actions">
+                <a id="add-to-cart-@Item.Id" asp-controller="Carts" asp-action="AddToCart" asp-route-id="@Item.Id"> Add to cart</a>
+                <a id="view-details-@Item.Id" asp-action="Details" asp-route-id="@Item.Id">View Details</a>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,4 @@
+﻿
+
+Cart:
+Skriv ut namnen på produkterna i DeleteAllConfirm.cshtml

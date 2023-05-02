@@ -1,0 +1,41 @@
+﻿@model GrupparbeteMVC.Models.Product
+
+<h1 class="product-name"> Details </h1>
+<div id="change-price-link">
+    <a id="change-to-dollar" class="product-actions" asp-action="Details" asp-route-id="@Model.Id">Change to SEK price</a>
+</div>
+<br />
+<div id="details-container">
+    <div class="product-name">Name:</div>
+    <div class="product-info">@Html.DisplayFor(model => model.Name)</div>
+    <div class="product-name">Description:</div>
+    <div class="product-info">@Html.DisplayFor(model => model.Description)</div>
+
+    <div class="product-name">Price:</div>
+    <div class="product-info">@Html.DisplayFor(model => model.DollarPrice)$</div>
+
+    <div class="product-name">Categories:</div>
+    <ul class="product-info">
+        @foreach (var category in Model.Categories)
+        {
+            <li>@category.Name</li>
+        }
+    </ul>
+
+    <div class="product-name">Tags:</div>
+    <ul class="product-info">
+        @foreach (var tag in Model.Tags)
+        {
+            <li>@tag.Name</li>
+        }
+    </ul>
+
+    <div class="product-actions">
+        <a id="share-twitter" href="#" class="product-actions">Share on Twitter</a>
+        <a id="share-instagram" href="#" class="product-actions">Share on Instagram</a>
+    </div>
+
+    <div class="product-actions">
+        <a id="add-to-cart" class="product-actions" asp-controller="Carts" asp-action="AddToCart" asp-route-id="@Model.Id">Add to cart</a>
+    </div>
+</div>
